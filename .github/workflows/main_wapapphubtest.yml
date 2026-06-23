@@ -60,7 +60,7 @@ jobs:
         uses: actions/download-artifact@v8
         with:
           name: python-app
-          path: python-app
+          path: .
       
       - name: Login to Azure
         uses: azure/login@v3
