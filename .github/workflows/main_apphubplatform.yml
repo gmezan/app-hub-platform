@@ -76,5 +76,5 @@ jobs:
           app-name: 'apphubplatform'
           slot-name: 'Production'
           package: ./site
-          startup-command: 'gunicorn --bind=0.0.0.0 --timeout 600 main:app'
+          startup-command: 'gunicorn --bind=0.0.0.0 --timeout 600 -k uvicorn.workers.UvicornWorker main:app'
           
