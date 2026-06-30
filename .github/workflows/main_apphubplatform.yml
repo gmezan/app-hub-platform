@@ -75,4 +75,5 @@ jobs:
         with:
           app-name: 'apphubplatform'
           slot-name: 'Production'
+          package: ./backend
           
