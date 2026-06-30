@@ -6,12 +6,14 @@ import { LogLevel } from '@azure/msal-browser'
  * https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-browser/docs/configuration.md 
  */
 
+const appBaseUri = `${window.location.origin}${import.meta.env.BASE_URL}`;
+
 export const msalConfig = {
   auth: {
     clientId: '9a2b7727-e702-4c94-af62-fa94fc6f9168',
     authority: 'https://login.microsoftonline.com/common',
-    redirectUri: window.location.origin,
-    postLogoutRedirectUri: window.location.origin,
+    redirectUri: appBaseUri,
+    postLogoutRedirectUri: appBaseUri,
     navigateToLoginRequestUrl: false,
   },
   cache: {

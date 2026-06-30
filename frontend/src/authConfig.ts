@@ -6,12 +6,14 @@ import { LogLevel } from '@azure/msal-browser';
  * https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-browser/docs/configuration.md 
  */
 
+const appBaseUri = `${window.location.origin}${import.meta.env.BASE_URL}`;
+
 export const msalConfig = {
     auth: {
         clientId: '9a2b7727-e702-4c94-af62-fa94fc6f9168', // This is the ONLY mandatory field that you need to supply.
         authority: 'https://login.microsoftonline.com/common', // Default authority for Microsoft Entra ID.
-        redirectUri: window.location.origin,
-        postLogoutRedirectUri: window.location.origin,
+        redirectUri: appBaseUri,
+        postLogoutRedirectUri: appBaseUri,
         navigateToLoginRequestUrl: false, // If "true", will navigate back to the original request location before processing the auth code response.
     },
     cache: {
