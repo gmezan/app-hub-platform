@@ -39,7 +39,7 @@ jobs:
         with:
           name: python-app
           path: |
-            backend/
+            backend/*
             !backend/antenv/
 
       # 🚫 Opting Out of Oryx Build
@@ -60,7 +60,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: python-app
-          path: ./backend/
+          path: ./site
       
       - name: Login to Azure
         uses: azure/login@v2
@@ -75,5 +75,6 @@ jobs:
         with:
           app-name: 'apphubplatform'
           slot-name: 'Production'
-          package: ./backend
+          package: ./site
+          startup-file: 'gunicorn --bind=0.0.0.0 --timeout 600 main:app'
           
