@@ -1,9 +1,10 @@
 .app-shell {
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   background: #f7f8fb;
   color: #1f2937;
+  overflow: hidden;
 }
 
 .topnav {
@@ -15,11 +16,24 @@
   border-bottom: 1px solid rgba(15, 23, 42, 0.08);
   background: #ffffff;
   box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+  position: sticky;
+  top: 0;
+  z-index: 20;
 }
 
 .brand {
   font-size: 1.1rem;
   font-weight: 700;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+
+.brand:hover {
+  background: transparent;
 }
 
 .sign-in {
@@ -41,6 +55,8 @@
   max-width: none;
   margin: 0;
   flex: 1;
+  min-height: 0;
+  overflow: hidden;
 }
 
 .layout--alone {
@@ -55,6 +71,9 @@
   display: flex;
   flex-direction: column;
   min-height: 220px;
+  position: sticky;
+  top: 5.5rem;
+  align-self: start;
 }
 
 .content--centered {
@@ -107,6 +126,9 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 0 1rem 1rem 0;
 }
 
 .page-header {

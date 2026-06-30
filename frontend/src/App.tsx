@@ -5,11 +5,11 @@ import Sidebar from './Sidebar'
 import { useMsalTokens, useMsalAuth } from './msal'
 import './App.css'
 
-const navItems = ['Agents']
+const navItems = ['Home', 'Agents']
 
 const MainContent = () => {
   const { instance } = useMsal()
-  const [activeItem, setActiveItem] = useState('Agents')
+  const [activeItem, setActiveItem] = useState('Home')
   const activeAccount = instance.getActiveAccount()
   const activeAccountId = activeAccount?.homeAccountId ?? null
   const { tokenResult, tokenError } = useMsalTokens(instance, activeAccountId)
@@ -20,7 +20,9 @@ const MainContent = () => {
   return (
     <div className="app-shell">
       <header className="topnav">
-        <div className="brand">App Hub</div>
+        <button type="button" className="brand" onClick={() => setActiveItem('Home')}>
+          App Hub
+        </button>
         <button
           type="button"
           className="sign-in"
@@ -44,21 +46,21 @@ const MainContent = () => {
             <h1>{loggedIn ? activeItem : 'Welcome'}</h1>
             <p>
               {loggedIn
-                ? `This is the ${activeItem.toLowerCase()} section.`
+                ? activeItem === 'Home'
+                  ? 'Review your account and token details from the home view.'
+                  : ''
                 : 'Sign in to see the menu and access the app sections.'}
             </p>
           </div>
 
-          <section className="panel">
-            <h2>{loggedIn ? 'Ready to explore' : 'Please sign in'}</h2>
-            <p>
-              {loggedIn
-                ? 'Use the sidebar to access Agents.'
-                : 'Click Sign in to authenticate and load the app.'}
-            </p>
-          </section>
+          {!loggedIn ? (
+            <section className="panel">
+              <h2>Please sign in</h2>
+              <p>Click Sign in to authenticate and load the app.</p>
+            </section>
+          ) : null}
 
-          {loggedIn && activeAccount ? (
+          {loggedIn && activeItem === 'Home' && activeAccount ? (
             <section className="panel">
               <h2>User details</h2>
               <div className="user-data">
